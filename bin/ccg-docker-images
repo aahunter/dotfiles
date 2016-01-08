@@ -1,4 +1,4 @@
 #!/bin/sh
 while read img; do
   docker pull $img
-done <~/.docker/ccg-docker-images
+done <~/.ccg-docker-images
