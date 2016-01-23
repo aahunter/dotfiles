@@ -1,11 +1,14 @@
 muccg/python-base:ubuntu14.04-2.7
+muccg/python-base:ubuntu15.10-2.7
 muccg/python-base:debian8-2.7
 muccg/python-base:debian8-3.4
+muccg/python-base:debian8-3.5
 muccg/python-base:centos6-2.7
 muccg/postfix
-muccg/base:debian8
-muccg/base:ubuntu14.04
-muccg/base:centos6
+muccg/base:debian-8
+muccg/base:ubuntu-14.04
+muccg/base:ubuntu-15.10
+muccg/base:centos-6
 muccg/rpmbuild:centos6
 muccg/nginx-uwsgi:1.7
 muccg/devpi
