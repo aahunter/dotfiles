@@ -11,6 +11,7 @@ muccg/base:ubuntu-15.10
 muccg/base:centos-6
 muccg/rpmbuild:centos6
 muccg/nginx-uwsgi:1.7
+muccg/nginx-uwsgi:1.9
 muccg/devpi
 muccg/squid-deb-proxy
 rabbitmq:3-management
