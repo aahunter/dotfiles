@@ -1,0 +1,29 @@
+#!/bin/bash
+set -a
+#set -x
+
+#DOCKER_COMPOSE_VERSION="1.7.1"
+DOCKER_COMPOSE_VERSION="1.8.0-rc1"
+
+# env vars containing DOCKER available to container
+DOCKER_ENV_OPTS=`env | grep DOCKER | cut -f 1 -d '=' | sed 's/^/-e /' | tr '\n' ' '`
+PIP_ENV_OPTS=`env | grep PIP | cut -f 1 -d '=' | sed 's/^/-e /' | tr '\n' ' '`
+GIT_ENV_OPTS=`env | grep GIT | cut -f 1 -d '=' | sed 's/^/-e /' | tr '\n' ' '`
+HTTP_ENV_OPTS=`env | grep -i HTTP | cut -f 1 -d '=' | sed 's/^/-e /' | tr '\n' ' '`
+PROXY_ENV_OPTS=`env | grep -i PROXY | cut -f 1 -d '=' | sed 's/^/-e /' | tr '\n' ' '`
+
+compose="docker run --rm \
+                    --interactive \
+                    --tty \
+                    --net "host" \
+                    -v /var/run/docker.sock:/var/run/docker.sock \
+                    -v "$(pwd):$(pwd)" \
+                    -w $(pwd) \
+                    ${DOCKER_ENV_OPTS} \
+                    ${PIP_ENV_OPTS} \
+                    ${HTTP_ENV_OPTS} \
+                    ${PROXY_ENV_OPTS} \
+                    ${GIT_ENV_OPTS} \
+                    -it docker/compose:${DOCKER_COMPOSE_VERSION}"
+
+exec $compose $*

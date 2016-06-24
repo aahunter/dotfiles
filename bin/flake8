@@ -1,0 +1,11 @@
+#!/bin/bash
+flake8="docker run --rm \
+                    --interactive \
+                    --tty \
+                    --net "host" \
+                    -v /var/run/docker.sock:/var/run/docker.sock \
+                    -v "$(pwd):$(pwd)" \
+                    -w $(pwd)
+                    -it muccg/linter flake8"
+
+exec $flake8 $*
