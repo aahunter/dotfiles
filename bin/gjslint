@@ -3,7 +3,6 @@ gjslint="docker run --rm \
                     --interactive \
                     --tty \
                     --net "host" \
-                    -v /var/run/docker.sock:/var/run/docker.sock \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
                     -it muccg/linter gjslint"
