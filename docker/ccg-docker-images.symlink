@@ -12,8 +12,10 @@ muccg/base:centos-6
 muccg/rpmbuild:centos6
 muccg/nginx-uwsgi:1.7
 muccg/nginx-uwsgi:1.9
+muccg/nginx-uwsgi:1.10
 muccg/devpi
 muccg/squid-deb-proxy
+muccg/linter
 rabbitmq:3-management
 ubuntu:trusty
 mongo:2.6
