@@ -1,0 +1,10 @@
+#!/bin/bash
+set -a
+
+kubectl="docker run --rm \
+                    --interactive \
+                    --tty \
+                    --net "host" \
+                    -it gcr.io/google_containers/hyperkube:v1.3.7 /kubectl"
+
+exec $kubectl $*

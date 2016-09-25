@@ -1,10 +1,10 @@
 #!/bin/bash
-autoflake="docker run --rm \
+yapf="docker run --rm \
                     --interactive \
                     --tty \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter autoflake"
+                    -it muccg/linter:python2 yapf"
 
-exec $autoflake $*
+exec $yapf $*

@@ -1,10 +1,10 @@
 #!/bin/bash
-yapf="docker run --rm \
+github_changelog_generator="docker run --rm \
                     --interactive \
                     --tty \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter yapf"
+                    -it muccg/github-changelog-generator"
 
-exec $yapf $*
+exec $github_changelog_generator $*

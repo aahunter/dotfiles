@@ -1,10 +1,10 @@
 #!/bin/bash
-prospector="docker run --rm \
+autopep8="docker run --rm \
                     --interactive \
                     --tty \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter prospector"
+                    -it muccg/linter:python3 autopep8"
 
-exec $prospector $*
+exec $autopep8 $*

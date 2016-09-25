@@ -5,6 +5,6 @@ autopep8="docker run --rm \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter autopep8"
+                    -it muccg/linter:python2 autopep8"
 
 exec $autopep8 $*

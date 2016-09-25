@@ -1,0 +1,10 @@
+#!/bin/bash
+set -f
+awscli="docker run --rm \
+                   --interactive \
+                   --tty \
+                   --net "host" \
+                   -v "${HOME}/.aws:/data/.aws" \
+                   -it muccg/awscli"
+
+exec $awscli $*

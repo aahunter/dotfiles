@@ -1,10 +1,10 @@
 #!/bin/bash
-flake8="docker run --rm \
+pylint="docker run --rm \
                     --interactive \
                     --tty \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter flake8"
+                    -it muccg/linter:python2 pylint"
 
-exec $flake8 $*
+exec $pylint $*

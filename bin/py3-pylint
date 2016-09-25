@@ -1,10 +1,10 @@
 #!/bin/bash
-gjslint="docker run --rm \
+pylint="docker run --rm \
                     --interactive \
                     --tty \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter:python2 gjslint"
+                    -it muccg/linter:python3 pylint"
 
-exec $gjslint $*
+exec $pylint $*
