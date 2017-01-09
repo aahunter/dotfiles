@@ -1,10 +1,11 @@
 #!/bin/bash
-set -f
 awscli="docker run --rm \
                    --interactive \
                    --tty \
-                   --net "host" \
+                   --net host \
                    -v "${HOME}/.aws:/data/.aws" \
+                   -v "$(pwd):$(pwd)" \
+                   -w $(pwd) \
                    -it muccg/awscli"
 
-exec $awscli $*
+exec $awscli "$@"
