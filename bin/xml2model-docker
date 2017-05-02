@@ -1,0 +1,10 @@
+#!/bin/bash
+xml2model="docker run --rm \
+                   --interactive \
+                   --tty \
+                   --net host \
+                   -v "$(pwd):$(pwd)" \
+                   -w $(pwd) \
+                   -it muccg/xml2model xml2model"
+
+exec $xml2model "$@"

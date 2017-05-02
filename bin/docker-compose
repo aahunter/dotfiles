@@ -1,31 +1,21 @@
-#!/bin/bash
-set -a
-#set -x
+#!/bin/sh
+set +x
+set -e
 
-#DOCKER_COMPOSE_VERSION="1.7.1"
-DOCKER_COMPOSE_VERSION="1.8.0-rc1"
+# There is no docker0 interface on Mac OS, so don't do any proxy detection
+if [ "$(uname)" != "Darwin" ]; then
+    set +e
+    DOCKER_ROUTE=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')
+    set -e
+    export DOCKER_ROUTE
+fi
 
-# env vars containing DOCKER available to container
-DOCKER_ENV_OPTS=`env | grep DOCKER | cut -f 1 -d '=' | sed 's/^/-e /' | tr '\n' ' '`
-PIP_ENV_OPTS=`env | grep PIP | cut -f 1 -d '=' | sed 's/^/-e /' | tr '\n' ' '`
-GIT_ENV_OPTS=`env | grep GIT | cut -f 1 -d '=' | sed 's/^/-e /' | tr '\n' ' '`
-HTTP_ENV_OPTS=`env | grep -i HTTP | cut -f 1 -d '=' | sed 's/^/-e /' | tr '\n' ' '`
-PROXY_ENV_OPTS=`env | grep -i PROXY | cut -f 1 -d '=' | sed 's/^/-e /' | tr '\n' ' '`
-DJANGO_ENV_OPTS=`env | grep -i DJANGO | cut -f 1 -d '=' | sed 's/^/-e /' | tr '\n' ' '`
-
-compose="docker run --rm \
-                    --interactive \
-                    --tty \
-                    --net "host" \
-                    -v /var/run/docker.sock:/var/run/docker.sock \
-                    -v "$(pwd):$(pwd)" \
-                    -w $(pwd) \
-                    ${DJANGO_ENV_OPTS} \
-                    ${DOCKER_ENV_OPTS} \
-                    ${PIP_ENV_OPTS} \
-                    ${HTTP_ENV_OPTS} \
-                    ${PROXY_ENV_OPTS} \
-                    ${GIT_ENV_OPTS} \
-                    -it docker/compose:${DOCKER_COMPOSE_VERSION}"
-
-exec $compose $*
+# shellcheck disable=SC2086 disable=SC2048
+docker run --rm \
+    -v /etc/timezone:/etc/timezone:ro \
+    -v /var/run/docker.sock:/var/run/docker.sock  \
+    -v "$(pwd)":"$(pwd)" \
+    -v "${HOME}"/.docker:/data/.docker \
+    -w "$(pwd)" \
+    docker/compose:1.11.2 \
+    "$@"

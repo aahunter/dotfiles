@@ -1,0 +1,18 @@
+#!/bin/sh
+
+: "${DOCKER_ECLIPSE_NEON_BIRT_PLUGINS:=${HOME}/.eclipse-neon-birt-docker}"
+: "${WORKSPACE=$(pwd)}"
+
+mkdir -p "${DOCKER_ECLIPSE_NEON_BIRT_PLUGINS}"
+
+set -x
+docker run -ti --rm \
+           -e DISPLAY="${DISPLAY}" \
+           --net "host" \
+           -v /tmp/.X11-unix:/tmp/.X11-unix \
+           -v /var/run/dbus:/var/run/dbus \
+           -v /etc/machine-id:/etc/machine-id \
+           -v /etc/timezone:/etc/timezone \
+           -v "${DOCKER_ECLIPSE_NEON_BIRT_PLUGINS}":/data/.eclipse \
+           -v "${WORKSPACE}":/data/workspace \
+           muccg/eclipse-birt:neon

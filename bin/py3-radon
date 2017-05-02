@@ -1,10 +1,10 @@
 #!/bin/bash
-github_changelog_generator="docker run --rm \
+radon="docker run --rm \
                     --interactive \
                     --tty \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/github-changelog-generator"
+                    -it muccg/linter:python3 radon"
 
-exec $github_changelog_generator "$@"
+exec $radon $*
