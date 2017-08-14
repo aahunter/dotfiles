@@ -10,6 +10,8 @@ if [ "$(uname)" != "Darwin" ]; then
     export DOCKER_ROUTE
 fi
 
+#    docker/compose:1.11.2 \
+
 # shellcheck disable=SC2086 disable=SC2048
 docker run --rm \
     -v /etc/timezone:/etc/timezone:ro \
@@ -17,5 +19,5 @@ docker run --rm \
     -v "$(pwd)":"$(pwd)" \
     -v "${HOME}"/.docker:/data/.docker \
     -w "$(pwd)" \
-    docker/compose:1.11.2 \
+    docker/compose:1.15.0 \
     "$@"
