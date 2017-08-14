@@ -3,6 +3,6 @@ pypicli="docker run --rm \
                    --interactive \
                    --tty \
                    --net host \
-                   -it muccg/pypicli"
+                   muccg/pypicli"
 
 exec $pypicli "$@"
