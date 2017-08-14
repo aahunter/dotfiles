@@ -5,6 +5,6 @@ awscli="docker run --rm \
                    -v "${HOME}/.aws:/data/.aws" \
                    -v "$(pwd):$(pwd)" \
                    -w $(pwd) \
-                   -it muccg/awscli"
+                   muccg/awscli"
 
 exec $awscli "$@"

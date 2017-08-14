@@ -4,6 +4,6 @@ radon="docker run --rm \
                     --tty \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter:python3 radon"
+                    muccg/linter:python3 radon"
 
 exec $radon $*

@@ -4,6 +4,6 @@ yapf="docker run --rm \
                     --tty \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/linter:python2 yapf"
+                    muccg/linter:python2 yapf"
 
 exec $yapf $*

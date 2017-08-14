@@ -5,6 +5,6 @@ github_changelog_generator="docker run --rm \
                     --net "host" \
                     -v "$(pwd):$(pwd)" \
                     -w $(pwd)
-                    -it muccg/github-changelog-generator"
+                    muccg/github-changelog-generator"
 
 exec $github_changelog_generator "$@"
